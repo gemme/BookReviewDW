@@ -16,7 +16,8 @@ import {
   useColorScheme,
   View,
   TextInput,
-  FlatList
+  FlatList,
+  Image
 } from 'react-native';
 
 import {
@@ -29,7 +30,7 @@ import {
 import { MyHeader } from 'components/MyHeader';
 import { Row } from 'components/Row';
 import { API_URL } from './src/constants';
-
+import BookIcon from 'assets/book.png';
 
 const App = () => {
   const [search, setSearch] = useState('');
@@ -54,6 +55,16 @@ const App = () => {
   }, []);
   return (
     <SafeAreaView style={[styles.container]}>
+      <View style={
+        styles.image
+      }>
+        <Image
+          source={BookIcon}
+          style={{
+            height: 50,
+            width: 50
+          }}/>
+      </View>
       <MyHeader title={'Book Review'} />
       <TextInput
         style={styles.txtInput}
@@ -71,7 +82,7 @@ const App = () => {
           })}
         renderItem={({item, index}) => {
           return (
-            <Row index={index + 1} title={item.title} author={item.author} />
+            <Row index={index + 1} title={item.title} author={item.author} image={item.image}/>
           );
         } }
         keyExtractor={v => v.title}
@@ -92,6 +103,10 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderColor: '#ddd',
     backgroundColor: '#F5F5'
+  },
+  image: {
+    alignItems: 'center',
+    marginTop: 30,
   }
 });
 

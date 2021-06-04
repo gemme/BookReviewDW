@@ -3,11 +3,14 @@ import {
     Text,
     View,
     StyleSheet,
-    TouchableOpacity
+    TouchableOpacity,
+    Image
 } from 'react-native';
+import { IMG_URL } from '../constants';
 
-export const Row = ({ index, title, author }) => {
+export const Row = ({ index, title, author, image }) => {
     const [info, showInfo] = useState(false);
+
     return (
         <View>
             <View
@@ -15,7 +18,15 @@ export const Row = ({ index, title, author }) => {
                     backgroundColor: index % 2 ? '#CBC3E3' : 'white',
                 }]}>
                 <View style={styles.edges}>
-                    <Text>{index}</Text>
+                    <Image
+                        source={{
+                            uri: `${IMG_URL}${image}`
+                        }}
+                        style={{
+                            width: 50,
+                            height: 50
+                        }}
+                        />
                 </View>
                 <View style={styles.titleBook}>
                     <Text>{title}</Text>
