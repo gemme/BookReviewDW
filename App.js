@@ -15,7 +15,8 @@ import {
   Text,
   useColorScheme,
   View,
-  TextInput
+  TextInput,
+  FlatList
 } from 'react-native';
 
 import {
@@ -26,6 +27,7 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 import { MyHeader } from 'components/MyHeader';
+import { Row } from 'components/Row';
 
 
 const books = [
@@ -55,53 +57,33 @@ const books = [
   { title: 'Men Without Women', author: 'Ernest Hemingway', image: 'men_without_women.jpg', rating: 0 },
 ];
 
-const Row = ({ index, title, author }) => {
-  return (
-    <View
-      style={[styles.row, {
-        backgroundColor: index % 2 ? '#CBC3E3' : 'white',
-      }]}>
-      <View style={styles.edges}>
-        <Text>{index}</Text>
-      </View>
-      <View style={styles.titleBook}>
-        <Text>{title}</Text>
-        <Text style={styles.author}>{author}</Text>
-      </View>
-      <View style={styles.edges}>
-        <Text>Info</Text>
-      </View>
-    </View>
-  )
-};
-
-
 const App = () => {
   const [search, setSearch] = useState('');
 
   return (
-    <SafeAreaView style={[ styles.container]}>
-      <MyHeader title={'Book Review'}/>
+    <SafeAreaView style={[styles.container]}>
+      <MyHeader title={'Book Review'} />
       <TextInput
         style={styles.txtInput}
         placeholder='Search'
         onChangeText={(text) => {
           setSearch(text);
         }}
-        ></TextInput>
-        <Text>{search}</Text>
-      <ScrollView>
-        {books
+      ></TextInput>
+      <Text>{search}</Text>
+      <FlatList
+        data={
+          books
           .filter((v) => {
             return v.title.toLocaleLowerCase().indexOf(search.toLocaleLowerCase()) > -1;
-          })
-          .map((v, index) => {
-            return (
-              <Row index={index + 1} title={v.title} author={v.author} />
-            );
-          })
-        }
-      </ScrollView>
+          })}
+        renderItem={({item, index}) => {
+          return (
+            <Row index={index + 1} title={item.title} author={item.author} />
+          );
+        } }
+        keyExtractor={v => v.title}
+      />
     </SafeAreaView>
   );
 };
@@ -110,27 +92,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1
   },
-  row: {
-    flexDirection: 'row'
-  },
-  edges: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  titleBook: {
-    flex: 8,
-    flexDirection: 'column'
-  },
-  author: {
-    color: 'gray'
-  },
   txtInput: {
     marginBottom: 30,
     padding: 10,
     paddingHorizontal: 20,
     fontSize: 16,
-    borderBottomWidth:1,
+    borderBottomWidth: 1,
     borderColor: '#ddd',
     backgroundColor: '#F5F5'
   }
