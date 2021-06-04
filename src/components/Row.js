@@ -7,8 +7,9 @@ import {
     Image
 } from 'react-native';
 import { IMG_URL } from '../constants';
+import { Star } from 'components/Star';
 
-export const Row = ({ index, title, author, image }) => {
+export const Row = ({ index, title, author, image, rating }) => {
     const [info, showInfo] = useState(false);
 
     return (
@@ -31,6 +32,7 @@ export const Row = ({ index, title, author, image }) => {
                 <View style={styles.titleBook}>
                     <Text>{title}</Text>
                     <Text style={styles.author}>{author}</Text>
+                    <Star rating={rating}/>
                 </View>
                 <TouchableOpacity
                     style={styles.button}

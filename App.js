@@ -82,7 +82,13 @@ const App = () => {
           })}
         renderItem={({item, index}) => {
           return (
-            <Row index={index + 1} title={item.title} author={item.author} image={item.image}/>
+            <Row
+              index={index + 1}
+              title={item.title}
+              author={item.author}
+              image={item.image}
+              rating={item.rating}
+              />
           );
         } }
         keyExtractor={v => v.title}
