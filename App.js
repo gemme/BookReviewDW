@@ -19,7 +19,19 @@ const Stack = createStackNavigator();
 const App = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
+      <Stack.Navigator
+        initialRouteName="Home"
+        screenOptions={{
+          title: 'Book Info',
+          headerStyle: {
+            backgroundColor: 'black',
+            color: 'white'
+          },
+          headerTintColor: 'white',
+          headerTitleColor: {
+            color: 'white'
+          }
+        }}>
         <Stack.Screen name="Home" component={BookList} />
         <Stack.Screen name="Info" component={BookInfo} />
       </Stack.Navigator>
