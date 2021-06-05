@@ -37,7 +37,9 @@ export const Row = ({ index, title, author, image, rating, navigation }) => {
                 <TouchableOpacity
                     style={styles.button}
                     onPress={() => {
-                        navigation.navigate('Info');
+                        navigation.navigate('Info', {
+                            book: { title, author, image, rating }
+                        });
                     }}
                 >
                     <View style={styles.edges}>

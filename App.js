@@ -24,8 +24,7 @@ const App = () => {
         screenOptions={{
           title: 'Book Info',
           headerStyle: {
-            backgroundColor: 'black',
-            color: 'white'
+            backgroundColor: 'black'
           },
           headerTintColor: 'white',
           headerTitleColor: {
