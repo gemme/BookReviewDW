@@ -10,7 +10,6 @@ import { IMG_URL } from '../constants';
 import { Star } from 'components/Star';
 
 export const Row = ({ index, title, author, image, rating, navigation }) => {
-    const [info, showInfo] = useState(false);
 
     return (
         <View>
@@ -47,12 +46,6 @@ export const Row = ({ index, title, author, image, rating, navigation }) => {
                     </View>
                 </TouchableOpacity>
             </View>
-
-            {info && (
-                <View>
-                    <Text>Book Info</Text>
-                </View>)
-            }
         </View>
     )
 };
@@ -75,10 +68,11 @@ const styles = StyleSheet.create({
         color: 'gray'
     },
     button: {
-        borderWidth: 1,
+        borderWidth: .5,
         borderColor: '#000000',
         borderRadius: 10,
         paddingHorizontal: 10,
         paddingVertical: 2,
+        margin: 20
     }
 });
