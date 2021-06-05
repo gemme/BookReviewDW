@@ -9,7 +9,7 @@ import {
 import { IMG_URL } from '../constants';
 import { Star } from 'components/Star';
 
-export const Row = ({ index, title, author, image, rating, navigation }) => {
+export const Row = ({ index, title, author, image, rating, navigation, id }) => {
 
     return (
         <View>
@@ -37,7 +37,7 @@ export const Row = ({ index, title, author, image, rating, navigation }) => {
                     style={styles.button}
                     onPress={() => {
                         navigation.navigate('Info', {
-                            book: { title, author, image, rating }
+                            book: { title, author, image, rating, id }
                         });
                     }}
                 >

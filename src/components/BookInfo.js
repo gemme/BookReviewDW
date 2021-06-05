@@ -4,7 +4,7 @@ import { Star } from 'components/Star';
 import { IMG_URL } from '../constants';
 
 export const BookInfo = ({ route, navigation }) => {
-    const { title, author, image, rating } = route.params.book;
+    const { title, author, image, rating, id } = route.params.book;
     /* route.params.book.title;
     route.params.book.author; */
 
@@ -26,7 +26,9 @@ export const BookInfo = ({ route, navigation }) => {
                 <Star rating={rating} />
                 <TouchableOpacity
                     onPress={() => {
-                        navigation.navigate('reviews');
+                        navigation.navigate('addReview', {
+                            bookId: id
+                        });
                     }}
                     style={styles.button}
                 >

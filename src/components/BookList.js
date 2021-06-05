@@ -71,6 +71,7 @@ export const BookList = (props) => {
                             author={item.author}
                             image={item.image}
                             rating={item.rating}
+                            id={item.id}
                             navigation={props.navigation}
                         />
                     );

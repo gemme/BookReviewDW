@@ -82,7 +82,7 @@ const App = () => {
           name='root'
           component={TabNavigator}
           options={{ headerShown: false }}/>
-        <RootNavigator.Screen name='reviews' component={AddReview} />
+        <RootNavigator.Screen name='addReview' component={AddReview} />
       </RootNavigator.Navigator>
     </NavigationContainer>);
 };
