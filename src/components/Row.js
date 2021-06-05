@@ -9,7 +9,7 @@ import {
 import { IMG_URL } from '../constants';
 import { Star } from 'components/Star';
 
-export const Row = ({ index, title, author, image, rating }) => {
+export const Row = ({ index, title, author, image, rating, navigation }) => {
     const [info, showInfo] = useState(false);
 
     return (
@@ -37,7 +37,7 @@ export const Row = ({ index, title, author, image, rating }) => {
                 <TouchableOpacity
                     style={styles.button}
                     onPress={() => {
-                        showInfo(v => !v);
+                        navigation.navigate('Info');
                     }}
                 >
                     <View style={styles.edges}>
