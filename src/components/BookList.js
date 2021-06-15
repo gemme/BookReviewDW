@@ -15,26 +15,30 @@ import { Row } from 'components/Row';
 import { API_URL } from '../constants';
 import BookIcon from 'assets/book.png';
 
+async function fetchData() {
+    try {
+        const response = await fetch(`${API_URL}/Books`);
+        const books = await response.json();
+        return books;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 export const BookList = (props) => {
     const [search, setSearch] = useState('');
     const [books, setBooks] = useState([]);
+    const [refreshing, setRefreshing] = useState(false);
     useEffect(() => {
         /* fetch(`${API_URL}/Books`)
           .then(response => response.json())
           .then(v => setBooks(v))
           .catch(error => console.log(error)) */
-
-        async function fetchData() {
-            try {
-                const response = await fetch(`${API_URL}/Books`);
-                const books = await response.json();
-                setBooks(books);
-            } catch (error) {
-                console.log(error);
-            }
-        }
-        fetchData();
-
+        const asyncFetchData = async () => {
+            const data = await fetchData();
+            setBooks(data);
+        };
+        asyncFetchData();
     }, []);
     return (
         <SafeAreaView style={[styles.container]}>
@@ -77,6 +81,16 @@ export const BookList = (props) => {
                     );
                 }}
                 keyExtractor={v => v.title}
+                refreshing={refreshing}
+                onRefresh={() => {
+                    const asyncFetchData = async () => {
+                        setRefreshing(true);
+                        const data = await fetchData();
+                        setBooks(data);
+                       setRefreshing(false); 
+                    };
+                    asyncFetchData();
+                }}
             />
         </SafeAreaView>
     );
